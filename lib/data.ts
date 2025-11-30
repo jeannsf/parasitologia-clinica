@@ -152,6 +152,19 @@ Complicações Graves
 - Migração para vias biliares: colangite
 - Pancreatite: quando migra para o pâncreas`,
   },
+    {
+    id: "transmissao",
+    title: "Transmissão",
+    content: `Transmissão da Ascaridíase
+
+A transmissão ocorre principalmente por via fecal-oral, a partir de ovos eliminados nas fezes de indivíduos infectados.
+
+Principais formas de transmissão
+- Ingestão de ovos embrionados presentes em água ou alimentos contaminados
+- Contato com solo contaminado com fezes humanas
+- Má higiene das mãos, especialmente em crianças
+- Ingestão de frutas, legumes e verduras crus mal higienizados`,
+  },
   {
     id: "diagnostico-tratamento",
     title: "Diagnóstico e Tratamento",
@@ -167,19 +180,6 @@ Diagnóstico Laboratorial
 - Métodos de sedimentação espontânea (Hoffman)
 - Métodos quantitativos (Kato-Katz)
 - Pesquisa de ovos nas fezes`,
-  },
-  {
-    id: "transmissao",
-    title: "Transmissão",
-    content: `Transmissão da Ascaridíase
-
-A transmissão ocorre principalmente por via fecal-oral, a partir de ovos eliminados nas fezes de indivíduos infectados.
-
-Principais formas de transmissão
-- Ingestão de ovos embrionados presentes em água ou alimentos contaminados
-- Contato com solo contaminado com fezes humanas
-- Má higiene das mãos, especialmente em crianças
-- Ingestão de frutas, legumes e verduras crus mal higienizados`,
   },
   {
     id: "prevencao",

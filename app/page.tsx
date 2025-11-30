@@ -39,14 +39,14 @@ export default function Home() {
     },
     {
       icon: <Activity className="w-5 h-5" />,
-      title: "Sintomas e Diagnóstico",
+      title: "Sintomas e Patogenia",
       description:
         "Aprenda a identificar os sinais da infecção e os métodos utilizados para o diagnóstico.",
       link: "/conteudos",
     },
     {
       icon: <ShieldCheck className="w-5 h-5" />,
-      title: "Prevenção e Tratamento",
+      title: "Diagnostico e Tratamento",
       description:
         "Descubra as medidas profiláticas essenciais e as opções terapêuticas disponíveis.",
       link: "/conteudos",
@@ -192,7 +192,7 @@ export default function Home() {
                 <img
                   src="/images/ascaris-lumbricoides.webp"
                   alt="Ascaris lumbricoides"
-                  className="w-full h-full object-contain md:object-cover select-none"
+                  className="w-full h-full object-cover select-none"
                   draggable={false}
                 />
               </div>

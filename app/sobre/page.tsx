@@ -17,7 +17,9 @@ export default function Sobre() {
         <CardContent className="space-y-4 leading-relaxed text-muted-foreground">
           <p>
             Este site educativo foi desenvolvido como parte de um trabalho
-            acadêmico focado no estudo da <strong>Ascaridíase</strong>.
+            acadêmico da disciplina de parasitologia humana produzido pelas
+            estudantes do curso de enfermagem da Universidade Estadual de Feira
+            de Santana UEFS focado no estudo da <strong>Ascaridíase</strong>.
           </p>
           <p>
             O objetivo é fornecer uma ferramenta interativa e acessível para
