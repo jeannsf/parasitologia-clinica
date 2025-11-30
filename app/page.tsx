@@ -119,8 +119,14 @@ export default function Home() {
                   <p className="text-blue-700 font-semibold">
                     Ascaris lumbricoides
                   </p>
-                  <p className="text-blue-600 text-sm">Roundworm</p>
+                  <p className="text-blue-600 text-sm">
+                    Conhecida popularmente como lombriga, é um nematódeo intestinal que parasita o ser humano.
+                  </p>
+                  <p className="text-blue-600 text-xs mt-1">
+                    Transmissão fecal-oral, ciclo monoxênico e alta prevalência em áreas com saneamento básico precário.
+                  </p>
                 </div>
+
               </div>
             </motion.div>
           </div>
