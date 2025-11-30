@@ -100,11 +100,6 @@ export const flashcardsData = [
     back: "Exame parasitológico de fezes (EPF) - Métodos de Hoffman, Kato-Katz",
   },
   {
-    id: 7,
-    front: "Tratamento Farmacológico",
-    back: "Albendazol, Mebendazol, Levamisol",
-  },
-  {
     id: 8,
     front: "Complicação Grave",
     back: "Obstrução intestinal (bolo de áscaris) ou migração errática (colédoco, apêndice)",
