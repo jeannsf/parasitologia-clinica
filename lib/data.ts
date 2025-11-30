@@ -166,13 +166,33 @@ Diagnóstico Laboratorial
 - Exame parasitológico de fezes (EPF)
 - Métodos de sedimentação espontânea (Hoffman)
 - Métodos quantitativos (Kato-Katz)
-- Pesquisa de ovos nas fezes
+- Pesquisa de ovos nas fezes`,
+  },
+  {
+    id: "transmissao",
+    title: "Transmissão",
+    content: `Transmissão da Ascaridíase
 
-Prevenção
+A transmissão ocorre principalmente por via fecal-oral, a partir de ovos eliminados nas fezes de indivíduos infectados.
+
+Principais formas de transmissão
+- Ingestão de ovos embrionados presentes em água ou alimentos contaminados
+- Contato com solo contaminado com fezes humanas
+- Má higiene das mãos, especialmente em crianças
+- Ingestão de frutas, legumes e verduras crus mal higienizados`,
+  },
+  {
+    id: "prevencao",
+    title: "Prevenção",
+    content: `Prevenção da Ascaridíase
+
+Medidas básicas de prevenção
 - Saneamento básico adequado
-- Higiene pessoal (lavar as mãos)
-- Lavagem correta de frutas e verduras
+- Higiene pessoal (lavar as mãos com água e sabão)
+- Lavagem correta de frutas, legumes e verduras
+- Uso de água tratada para consumo
+- Evitar defecação a céu aberto
 - Tratamento dos doentes para quebrar a cadeia de transmissão
-- Educação sanitária`,
+- Educação sanitária em comunidades de risco`,
   },
 ];

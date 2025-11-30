@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowRight,
+  ArrowLeft,
   Activity,
   ShieldCheck,
   RefreshCw,
@@ -22,6 +23,11 @@ import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   const [isHeroFlipped, setIsHeroFlipped] = useState(false);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const isDragging = useRef(false);
+  const hasDragged = useRef(false);
+  const startX = useRef(0);
+  const scrollStart = useRef(0);
 
   const features = [
     {
@@ -45,7 +51,90 @@ export default function Home() {
         "Descubra as medidas profiláticas essenciais e as opções terapêuticas disponíveis.",
       link: "/conteudos",
     },
+    {
+      icon: <RefreshCw className="w-5 h-5" />,
+      title: "Transmissão",
+      description:
+        "Compreenda como ocorre a transmissão da ascaridíase e os principais fatores de risco associados.",
+      link: "/conteudos",
+    },
+    {
+      icon: <ShieldCheck className="w-5 h-5" />,
+      title: "Prevenção",
+      description:
+        "Conheça as medidas de higiene e saneamento que reduzem a transmissão da ascaridíase.",
+      link: "/conteudos",
+    },
   ];
+
+  const scrollCarousel = (direction: "left" | "right") => {
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    const scrollAmount = container.offsetWidth * 0.8;
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!carouselRef.current) return;
+    isDragging.current = true;
+    hasDragged.current = false;
+    startX.current = e.clientX;
+    scrollStart.current = carouselRef.current.scrollLeft;
+    e.preventDefault();
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !carouselRef.current) return;
+    const dx = e.clientX - startX.current;
+    if (Math.abs(dx) > 5) {
+      hasDragged.current = true;
+    }
+    carouselRef.current.scrollLeft = scrollStart.current - dx;
+    e.preventDefault();
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!carouselRef.current) return;
+    isDragging.current = true;
+    hasDragged.current = false;
+    startX.current = e.touches[0].clientX;
+    scrollStart.current = carouselRef.current.scrollLeft;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !carouselRef.current) return;
+    const dx = e.touches[0].clientX - startX.current;
+    if (Math.abs(dx) > 5) {
+      hasDragged.current = true;
+    }
+    carouselRef.current.scrollLeft = scrollStart.current - dx;
+  };
+
+  const handleTouchEnd = () => {
+    isDragging.current = false;
+  };
+
+  const handleCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (hasDragged.current) {
+      e.preventDefault();
+      hasDragged.current = false;
+    }
+  };
+
+  const handleCardDragStart = (e: React.DragEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="space-y-24 pb-12">
@@ -103,7 +192,8 @@ export default function Home() {
                 <img
                   src="/images/ascaris-lumbricoides.webp"
                   alt="Ascaris lumbricoides"
-                  className="w-full h-full object-contain md:object-cover"
+                  className="w-full h-full object-contain md:object-cover select-none"
+                  draggable={false}
                 />
               </div>
 
@@ -114,25 +204,24 @@ export default function Home() {
                   backfaceVisibility: "hidden",
                 }}
               >
-                <div className="text-center">
+                <div className="text-center select-none">
                   <BookOpen className="w-24 h-24 mx-auto text-blue-600 mb-4" />
                   <p className="text-blue-700 font-semibold">
                     Ascaris lumbricoides
                   </p>
                   <p className="text-blue-600 text-sm">
-                    Conhecida popularmente como lombriga, é um nematódeo intestinal que parasita o ser humano.
+                    Conhecida popularmente como lombriga, é um nematódeo
+                    intestinal que parasita o ser humano.
                   </p>
                   <p className="text-blue-600 text-xs mt-1">
-                    Transmissão fecal-oral, ciclo monoxênico e alta prevalência em áreas com saneamento básico precário.
+                    Transmissão fecal-oral, ciclo monoxênico e alta prevalência
+                    em áreas com saneamento básico precário.
                   </p>
                 </div>
-
               </div>
             </motion.div>
           </div>
         </div>
-
-
       </section>
 
       <section>
@@ -146,24 +235,60 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <Link key={index} href={feature.link}>
-              <Card className="h-full hover:shadow-md transition-shadow cursor-pointer border-muted">
-                <CardHeader>
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-2">
-                    {feature.icon}
-                  </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+        <div className="flex items-center gap-4">
+          <Button
+            variant="outline"
+            size="icon"
+            className="rounded-full shadow-sm"
+            onClick={() => scrollCarousel("left")}
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </Button>
+
+          <div
+            ref={carouselRef}
+            className="flex-1 flex gap-6 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing select-none"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            {features.map((feature, index) => (
+              <Link
+                key={index}
+                href={feature.link}
+                onClick={handleCardClick}
+                onDragStart={handleCardDragStart}
+                className="w-full md:w-1/3 flex-shrink-0 snap-center"
+              >
+                <Card className="h-full hover:shadow-md transition-shadow cursor-pointer border-muted">
+                  <CardHeader>
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-2">
+                      {feature.icon}
+                    </div>
+                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {feature.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          <Button
+            variant="outline"
+            size="icon"
+            className="rounded-full shadow-sm"
+            onClick={() => scrollCarousel("right")}
+          >
+            <ArrowRight className="w-4 h-4" />
+          </Button>
         </div>
       </section>
 
