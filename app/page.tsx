@@ -103,7 +103,7 @@ export default function Home() {
                 <img
                   src="/images/ascaris-lumbricoides.webp"
                   alt="Ascaris lumbricoides"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain md:object-cover"
                 />
               </div>
 
@@ -125,6 +125,7 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+
 
       </section>
 
