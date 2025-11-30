@@ -63,12 +63,6 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
-              <div className="flex flex-col gap-2 mt-4">
-                <Button variant="outline" className="w-full">
-                  Login
-                </Button>
-                <Button className="w-full">Começar</Button>
-              </div>
             </div>
           </SheetContent>
         </Sheet>
