@@ -9,29 +9,39 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 export default function Conteudos() {
   const getIcon = (id: string) => {
     switch (id) {
-      case "ciclo-biologico": return <BookOpen className="w-4 h-4 mr-2" />;
-      case "sintomas": return <Activity className="w-4 h-4 mr-2" />;
-      case "diagnostico-tratamento": return <ShieldCheck className="w-4 h-4 mr-2" />;
-      default: return <BookOpen className="w-4 h-4 mr-2" />;
+      case "ciclo-biologico":
+        return <BookOpen className="w-4 h-4 mr-2" />;
+      case "sintomas":
+        return <Activity className="w-4 h-4 mr-2" />;
+      case "diagnostico-tratamento":
+        return <ShieldCheck className="w-4 h-4 mr-2" />;
+      default:
+        return <BookOpen className="w-4 h-4 mr-2" />;
     }
   };
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
       <div className="text-center space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight">Material de Estudo</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          Material de Estudo
+        </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Explore os módulos detalhados sobre Ascaridíase, organizados para facilitar seu aprendizado.
+          Explore os módulos detalhados sobre Ascaridíase, organizados para
+          facilitar seu aprendizado.
         </p>
       </div>
 
-      <Tabs defaultValue={contentData[0].id} className="w-full flex flex-col md:flex-row gap-8">
-        <TabsList className="flex md:flex-col h-auto w-full md:w-64 bg-muted/50 p-1 gap-1 justify-start">
+      <Tabs
+        defaultValue={contentData[0].id}
+        className="w-full flex flex-col md:flex-row gap-8"
+      >
+        <TabsList className="flex md:flex-col h-auto w-full md:w-64 bg-muted/50 p-1 gap-1 justify-start overflow-x-auto md:overflow-visible [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
           {contentData.map((item) => (
             <TabsTrigger
               key={item.id}
               value={item.id}
-              className="w-full justify-start px-4 py-3 data-[state=active]:bg-background data-[state=active]:shadow-sm"
+              className="shrink-0 md:shrink w-auto md:w-full justify-start px-4 py-3 text-sm md:text-base whitespace-nowrap data-[state=active]:bg-background data-[state=active]:shadow-sm"
             >
               {getIcon(item.id)}
               {item.title}
